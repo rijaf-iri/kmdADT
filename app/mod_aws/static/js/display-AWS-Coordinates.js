@@ -28,7 +28,11 @@ $(document).ready(() => {
         maxZoom: 19,
         subdomains: ['a', 'b', 'c']
     }).addTo(mymap);
+
+    //////
+
     mytileBE = mytile;
+    mymapBE = mymap;
 
     /////
     var icons = {
@@ -60,11 +64,15 @@ $(document).ready(() => {
             icon: violetIcon
         }
     };
+
     //////
+    AWSCOORDS_JSON = "";
 
     $('#jsonTable thead tr').html('');
     $('#jsonTable tbody tr').html('');
     $.getJSON('/dispAWSCoordsMap', (json) => {
+        AWSCOORDS_JSON = json;
+
         var colHeader = Object.keys(json[1]);
         colHeader.splice(14, 3);
         for (var i = 0; i < colHeader.length; i++) {
@@ -79,8 +87,9 @@ $(document).ready(() => {
             var cont6 = '<br>' + 'Start : ' + this.startdate + '<br>' + 'End : ' + this.enddate;
             var contenu = cont1 + cont2 + cont3 + cont4 + cont5 + cont6;
             if (this.LonX != null) {
-                L.marker([this.LatX, this.LonX], { icon: icons[this.StatusX].icon })
+                var marker = L.marker([this.LatX, this.LonX], { icon: icons[this.StatusX].icon })
                     .bindPopup(contenu).addTo(mymap);
+                mymarkersBE.push(marker);
             } else {
                 $('#jsonTable tbody').append('<tr></tr>');
                 $.each($(this).get(0), function(index, value) {
@@ -92,7 +101,9 @@ $(document).ready(() => {
             }
         });
     });
+
     //////
+
     $("#maptype").on("change", () => {
         mymap.removeLayer(mytile);
         mymap.attributionControl.removeAttribution();
@@ -150,7 +161,7 @@ $(document).ready(() => {
     });
 
     ////////////
-    // initialize table with campbell
+    // initialize table with Tahmo
     disp_Table_Coords("1");
 
     //////
@@ -160,6 +171,29 @@ $(document).ready(() => {
         //
         var awsnet = $("#awsnet option:selected").val();
         disp_Table_Coords(awsnet);
+    });
+
+    //////
+
+    $("#awsNetDisp").on("click", () => {
+        $('a[href="#mapstnloc"]').click();
+        // 
+        if (AWSCOORDS_JSON == "") {
+            return false;
+        }
+        var awsnet = $("#awsnet option:selected").val();
+        var json = AWSCOORDS_JSON.filter(x => x.network_code.indexOf(awsnet) !== -1);
+        disp_Netwok_Map(json, icons);
+    });
+
+    //////
+    $("#awsNetDispAll").on("click", () => {
+        $('a[href="#mapstnloc"]').click();
+        // 
+        if (AWSCOORDS_JSON == "") {
+            return false;
+        }
+        disp_Netwok_Map(AWSCOORDS_JSON, icons);
     });
 });
 
@@ -211,5 +245,33 @@ function disp_Table_Coords(awsnet) {
         }
     }).always(() => {
         $("#awsCrdTable .glyphicon-refresh").hide();
+    });
+}
+
+function disp_Netwok_Map(json, icons) {
+    var mymap = mymapBE;
+    mymap.invalidateSize();
+
+    // remove markers
+    if (mymarkersBE.length > 0) {
+        for (i = 0; i < mymarkersBE.length; i++) {
+            mymap.removeLayer(mymarkersBE[i]);
+        }
+        mymarkersBE = [];
+    }
+
+    $.each(json, function() {
+        var cont1 = '<b>' + 'id : ' + this.id + '</b>' + '<br>' + 'station_name : ' + this.name;
+        var cont2 = '<br>' + 'longitude : ' + this.longitude + '<br>' + 'latitude : ' + this.latitude;
+        var cont3 = '<br>' + 'altitude : ' + this.altitude + '<br>' + 'county : ' + this.County;
+        var cont4 = '<br>' + 'subcounty : ' + this.SubCounty;
+        var cont5 = '<br>' + 'network name: ' + this.network + '<br>' + 'network code: ' + this.network_code;
+        var cont6 = '<br>' + 'Start : ' + this.startdate + '<br>' + 'End : ' + this.enddate;
+        var contenu = cont1 + cont2 + cont3 + cont4 + cont5 + cont6;
+        if (this.LonX != null) {
+            var marker = L.marker([this.LatX, this.LonX], { icon: icons[this.StatusX].icon })
+                .bindPopup(contenu).addTo(mymap);
+            mymarkersBE.push(marker);
+        }
     });
 }
