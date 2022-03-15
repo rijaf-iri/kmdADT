@@ -1,0 +1,153 @@
+{% extends "layout.html" %}
+{% block title %} ZMD ADT {% endblock %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/leaflet-1.6.0/leaflet.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/Plugins-leaflet/L.Control.MousePosition/L.Control.MousePosition.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='lib/leaflet-1.6.0/leaflet.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='lib/Plugins-leaflet/L.Control.MousePosition/L.Control.MousePosition.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='lib/Plugins-leaflet/leaflet-color-markers/js/leaflet-color-markers.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='lib/Plugins-leaflet/Leaflet-easyPrint/bundle.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('aws.static', filename='css/aws.css') }}">
+<style>
+    #mapAWSCoords {
+    width: 100%;
+    height: 80vh;
+    }
+    #idTable, #crdTable {
+    max-height: 80vh;
+    }
+    #downLeafletMap{
+    margin: 10px 0 10px 0;
+    }
+    .pinstatus{
+    height: 35px;
+    width: 20px;
+    margin-right: 10px;
+    }
+    </style>
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row wrapper">
+        <!-- Left Panel -->
+        <div class="col-sm-3 input-sidebar-left">
+            <div class="row">
+                <!-- Basemap -->
+                <div class="col-md-12 sidebar box">
+                    <div class="input-container">
+                        <div class="input-container-title">
+                            <span>Base Map</span>
+                            <span class="glyphicon glyphicon-plus input-container-icon"></span>
+                        </div>
+                        <div class="input-container-content">
+                            <label class="control-label">Change base map</label>
+                            <select name="maptype" id="maptype" class="form-control">
+                                <option value="openstreetmap" selected>OpenStreetMap Standard</option>
+                                <option value="mapboxsatellitestreets">Mapbox Satellite Streets</option>
+                                <option value="mapboxsatellite">Mapbox Satellite</option>
+                                <option value="mapboxstreets">Mapbox Streets</option>
+                                <option value="mapboxoutdoors">Mapbox Outdoors</option>
+                                <option value="mapboxlight">Mapbox Light</option>
+                                <option value="googlemaps">Google Maps</option>
+                            </select>
+                        </div>
+                        <!--  -->
+                        <div class="download">
+                            <button type="button" id="downLeafletMap" class="btn btn-primary btn-block"> Download Map </button>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="input-container">
+                        <div class="input-container-title">
+                            <span>AWS Coordinates Table</span>
+                            <span class="glyphicon glyphicon-plus input-container-icon"></span>
+                        </div>
+                        <div class="input-container-content">
+                            <div>
+                                <label class="control-label">Select AWS network</label>
+                                <select name="awsnet" id="awsnet" class="form-control">
+                                    <option value="1" selected>CAMPBELL</option>
+                                    <option value="2">ADCON</option>
+                                </select>
+                            </div>
+                            <div>
+                                <a id="awsCrdTable">
+                                    <button type="button" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="display:none;"></i> Display Coordinates Table</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="input-container">
+                        <div class="input-container-title">
+                            <span>Legend</span>
+                            <span class="glyphicon glyphicon-plus input-container-icon"></span>
+                        </div>
+                        <div class="input-container-content">
+                            <div>
+                                <!--  -->
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <img class="pinstatus" src="{{ url_for('static', filename='lib/Plugins-leaflet/leaflet-color-markers/img/marker-icon-2x-blue.png') }}">
+                                        </td>
+                                        <td>
+                                            Campbell, network_code = 1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img class="pinstatus" src="{{ url_for('static', filename='lib/Plugins-leaflet/leaflet-color-markers/img/marker-icon-2x-green.png') }}">
+                                        </td>
+                                        <td>
+                                            Adcon, network_code = 2
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img class="pinstatus" src="{{ url_for('static', filename='lib/Plugins-leaflet/leaflet-color-markers/img/marker-icon-2x-red.png') }}">
+                                        </td>
+                                        <td>
+                                            Duplicated
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Right panel -->
+        <div class="col-sm-9 main box">
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#mapstnloc" data-toggle="tab">Stations locations</a></li>
+                <li><a href="#misscoords" data-toggle="tab">Missing coordinates</a></li>
+                <li><a href="#awstable" data-toggle="tab">AWS Table</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="mapstnloc">
+                    <div id="mapAWSCoords"></div>
+                </div>
+                <div class="tab-pane" id="misscoords">
+                    <div id="idTable" class="table-responsive">
+                        <table id="jsonTable" class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="awstable">
+                    <div id="crdTable" class="table-responsive"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript" src="{{ url_for('aws.static', filename='js/display-AWS-Coordinates.js') }}"></script>
+{% endblock %}

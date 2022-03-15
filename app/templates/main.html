@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block title %} Kenya Meteorological Department {% endblock %}
+{% block head %}
+{{ super() }}
+<style type="text/css">
+/*    body {
+    background-image: url("{{ url_for('static', filename='images/nma_logo_1.png') }}");
+    background-repeat: round;
+    background-size: 100px 100px;
+    }
+    */
+.titre-adt {
+    grid-area: headr;
+}
+
+.image-hadt {
+    grid-area: hadt;
+}
+
+.container {
+    display: grid;
+    grid-template-areas:
+        'headr headr headr headr headr headr headr headr'
+        'hadt hadt hadt hadt hadt hadt hadt hadt';
+    grid-gap: 5px;
+    padding: 2px;
+}
+
+.container>div {
+    text-align: center;
+}
+
+.imgADTWelcome {
+    width: 600px;
+    height: 700px;
+}
+
+.daty-now {
+    text-align: center;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="titre-adt">
+        <h1>Welcome to ZMD AWS Data Tools (ADT)</h1>
+    </div>
+    <div class="image-hadt">
+        <img class="imgADTWelcome" src="{{ url_for('static', filename='images/kmd_aws_photo.png') }}" />
+    </div>
+</div>
+<div>
+    <p class="daty-now"> {{ date_now("%Y-%m-%d %H:%M") }}</p>
+</div>
+{% endblock %}
+{% block javascript %}
+<script>
+</script>
+{% endblock %}
