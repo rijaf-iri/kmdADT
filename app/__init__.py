@@ -34,8 +34,8 @@ def utility_processor():
 
 ## Import applications
 from app.mod_auth.usersManagement import mod_auth as auth_module
-# from app.mod_aws.awsDataDisplay import mod_aws as aws_module
+from app.mod_aws.awsDataDisplay import mod_aws as aws_module
 
 ## Register Blueprints
 app.register_blueprint(auth_module)
-# app.register_blueprint(aws_module)
+app.register_blueprint(aws_module)

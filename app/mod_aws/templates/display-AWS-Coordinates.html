@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %} ZMD ADT {% endblock %}
+{% block title %} KMD ADT {% endblock %}
 {% block head %}
 {{ super() }}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/leaflet-1.6.0/leaflet.css') }}">
@@ -67,8 +67,12 @@
                             <div>
                                 <label class="control-label">Select AWS network</label>
                                 <select name="awsnet" id="awsnet" class="form-control">
-                                    <option value="1" selected>CAMPBELL</option>
-                                    <option value="2">ADCON</option>
+                                    <option value="1" selected>TAHMO</option>
+                                    <option value="2">CAMPBELL</option>
+                                    <option value="3">SUTRON</option>
+                                    <option value="4">SEBA</option>
+                                    <option value="5">MIRCOSTEP</option>
+                                    <option value="6">ADCON</option>
                                 </select>
                             </div>
                             <div>
@@ -93,7 +97,7 @@
                                             <img class="pinstatus" src="{{ url_for('static', filename='lib/Plugins-leaflet/leaflet-color-markers/img/marker-icon-2x-blue.png') }}">
                                         </td>
                                         <td>
-                                            Campbell, network_code = 1
+                                            Tahmo, network_code = 1
                                         </td>
                                     </tr>
                                     <tr>
@@ -101,7 +105,39 @@
                                             <img class="pinstatus" src="{{ url_for('static', filename='lib/Plugins-leaflet/leaflet-color-markers/img/marker-icon-2x-green.png') }}">
                                         </td>
                                         <td>
-                                            Adcon, network_code = 2
+                                            Campbell, network_code = 2
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img class="pinstatus" src="{{ url_for('static', filename='lib/Plugins-leaflet/leaflet-color-markers/img/marker-icon-2x-violet.png') }}">
+                                        </td>
+                                        <td>
+                                            Sutron, network_code = 3
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img class="pinstatus" src="{{ url_for('static', filename='lib/Plugins-leaflet/leaflet-color-markers/img/marker-icon-2x-orange.png') }}">
+                                        </td>
+                                        <td>
+                                            Seba, network_code = 4
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img class="pinstatus" src="{{ url_for('static', filename='lib/Plugins-leaflet/leaflet-color-markers/img/marker-icon-2x-yellow.png') }}">
+                                        </td>
+                                        <td>
+                                            Microstep, network_code = 5
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img class="pinstatus" src="{{ url_for('static', filename='lib/Plugins-leaflet/leaflet-color-markers/img/marker-icon-2x-gold.png') }}">
+                                        </td>
+                                        <td>
+                                            Adcon, network_code = 6
                                         </td>
                                     </tr>
                                     <tr>

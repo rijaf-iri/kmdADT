@@ -35,14 +35,26 @@ $(document).ready(() => {
         blue: {
             icon: blueIcon
         },
+        yellow: {
+            icon: yellowIcon
+        },
         orange: {
             icon: orangeIcon
+        },
+        gold: {
+            icon: goldIcon
         },
         red: {
             icon: redIcon
         },
         green: {
             icon: greenIcon
+        },
+        grey: {
+            icon: greyIcon
+        },
+        black: {
+            icon: blackIcon
         },
         violet: {
             icon: violetIcon
@@ -61,8 +73,8 @@ $(document).ready(() => {
         $.each(json, function() {
             var cont1 = '<b>' + 'id : ' + this.id + '</b>' + '<br>' + 'station_name : ' + this.name;
             var cont2 = '<br>' + 'longitude : ' + this.longitude + '<br>' + 'latitude : ' + this.latitude;
-            var cont3 = '<br>' + 'altitude : ' + this.altitude + '<br>' + 'province : ' + this.province;
-            var cont4 = '<br>' + 'district : ' + this.district;
+            var cont3 = '<br>' + 'altitude : ' + this.altitude + '<br>' + 'county : ' + this.County;
+            var cont4 = '<br>' + 'subcounty : ' + this.SubCounty;
             var cont5 = '<br>' + 'network name: ' + this.network + '<br>' + 'network code: ' + this.network_code;
             var cont6 = '<br>' + 'Start : ' + this.startdate + '<br>' + 'End : ' + this.enddate;
             var contenu = cont1 + cont2 + cont3 + cont4 + cont5 + cont6;
