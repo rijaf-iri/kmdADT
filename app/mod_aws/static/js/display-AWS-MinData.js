@@ -13,14 +13,14 @@ $(document).ready(() => {
             );
         });
         // Initialization
-        $('#stationDispAWS option[value=2_860299-Mkushi]').attr('selected', true);
-        AWS_INFO = getAWSInfos('2_860299-Mkushi');
-        setAWSVariableSelect('2_860299-Mkushi');
+        $('#stationDispAWS option[value=3_SUTRON14-NAIROBI]').attr('selected', true);
+        AWS_INFO = getAWSInfos('3_SUTRON14-NAIROBI');
+        setAWSVariableSelect('3_SUTRON14-NAIROBI');
 
         // Integrate to R function from /readCoords
         AWS_TimeRange = getAWSTimeRange('/getAWSTimeRange', {
-            'id': "860299-Mkushi",
-            'net': '2'
+            'id': "SUTRON14-NAIROBI",
+            'net': '3'
         });
 
         //
@@ -76,11 +76,11 @@ $(document).ready(() => {
 
     var today = new Date();
     var daty2 = dateFormat(today, "yyyy-mm-dd-hh-MM");
-    today.setDate(today.getDate() - 5);
+    today.setDate(today.getDate() - 90);
     var daty1 = dateFormat(today, "yyyy-mm-dd-hh-MM");
 
     var data0 = {
-        "net_aws": "2_860299-Mkushi",
+        "net_aws": "3_SUTRON14-NAIROBI",
         "var_hgt": "5_1",
         "stat": "4",
         "start": daty1,
@@ -115,31 +115,31 @@ $(document).ready(() => {
 
     ////////////
     // Initialize map
-    var time_min = formatDateMapMin();
-    plot_Map_dataMinAWS(time_min);
+    var time_hour = formatDateMap1Hour();
+    plot_Map_dataMinAWS(time_hour + '-00');
 
     ////////
     $("#AWSMapDis").on("click", () => {
         $('a[href="#dispawssp"]').click();
         //
-        var time_min = formatDateMapMin();
-        plot_Map_dataMinAWS(time_min);
+        var time_hour = formatDateMap1Hour();
+        plot_Map_dataMinAWS(time_hour + '-00');
     });
     //
     $("#AWSMapNext").on("click", () => {
         $('a[href="#dispawssp"]').click();
         //
-        setDateTimeMapDataMin(30);
-        var time_min = formatDateMapMin();
-        plot_Map_dataMinAWS(time_min);
+        setDateTimeMapDataHour(1);
+        var time_hour = formatDateMap1Hour();
+        plot_Map_dataMinAWS(time_hour + '-00');
     });
     //
     $("#AWSMapPrev").on("click", () => {
         $('a[href="#dispawssp"]').click();
         //
-        setDateTimeMapDataMin(-30);
-        var time_min = formatDateMapMin();
-        plot_Map_dataMinAWS(time_min);
+        setDateTimeMapDataHour(-1);
+        var time_hour = formatDateMap1Hour();
+        plot_Map_dataMinAWS(time_hour + '-00');
     });
 
     //////////
@@ -168,7 +168,7 @@ $(document).ready(() => {
         var key_col;
         if (json.status != "ok") {
             var key_draw = false;
-            var filename = "aws_30min_data";
+            var filename = "aws_1hr_data";
         } else {
             var key_draw = true;
             var pars = $("#awsSpVar option:selected").val();
@@ -222,6 +222,8 @@ function plot_Map_dataMinAWS(daty) {
 
 ////
 
+var OUTDATA = "";
+
 function plot_TS_dataMinAWS(data) {
     $.ajax({
         dataType: "json",
@@ -229,6 +231,7 @@ function plot_TS_dataMinAWS(data) {
         data: data,
         timeout: 120000,
         success: (json) => {
+            OUTDATA = json;
             highcharts_TS_dataMinAWS(json);
             $('#errorMSG').empty();
         },

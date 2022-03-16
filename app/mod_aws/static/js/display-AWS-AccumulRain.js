@@ -14,18 +14,18 @@ $(document).ready(() => {
             );
         });
 
-        $('#stationDispAWS option[value=2_860299-Mkushi]').attr('selected', true);
+        $('#stationDispAWS option[value=3_SUTRON14-NAIROBI]').attr('selected', true);
         AWS_INFO = getAWSInfos('2_860299-Mkushi');
     });
 
     ////////////
     var today = new Date();
     var daty2 = dateFormat(today, "yyyy-mm-dd-hh");
-    today.setDate(today.getDate() - 90);
+    today.setDate(today.getDate() - 180);
     var daty1 = dateFormat(today, "yyyy-mm-dd-hh");
 
     var data0 = {
-        "net_aws": "2_860299-Mkushi",
+        "net_aws": "3_SUTRON14-NAIROBI",
         "accumul": "1",
         "tstep": "hourly",
         "start": daty1,

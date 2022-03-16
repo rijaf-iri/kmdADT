@@ -127,8 +127,8 @@ function getListMetadata() {
     info[3] = "<b>Longitude :</b> " + AWS_INFO.longitude;
     info[4] = "<b>Latitude :</b> " + AWS_INFO.latitude;
     info[5] = "<b>Elevation :</b> " + AWS_INFO.altitude;
-    info[6] = "<b>Province :</b> " + AWS_INFO.province;
-    info[7] = "<b>District :</b> " + AWS_INFO.district;
+    info[6] = "<b>County :</b> " + AWS_INFO.County;
+    info[7] = "<b>SubCounty :</b> " + AWS_INFO.SubCounty;
     info[8] = "<b>Start Time :</b> " + AWS_TimeRange.startdate;
     info[9] = "<b>End Time :</b> " + AWS_TimeRange.enddate;
 

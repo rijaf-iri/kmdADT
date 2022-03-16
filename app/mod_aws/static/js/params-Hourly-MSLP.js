@@ -49,7 +49,7 @@ function setAWSHourlyMSLPTime() {
     $("#month3").val((vmon < 10 ? "0" : "") + vmon);
     //
     var thisYear = daty.getFullYear();
-    for (var yr = 2013; yr <= thisYear; ++yr) {
+    for (var yr = 2015; yr <= thisYear; ++yr) {
         $('#year3').append(
             $("<option>").text(yr).val(yr)
         );

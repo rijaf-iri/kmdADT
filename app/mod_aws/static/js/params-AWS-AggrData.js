@@ -52,7 +52,7 @@ function setAWSAggrDataTime() {
     $("#month2, #month3").val((vmon < 10 ? "0" : "") + vmon);
     //
     var thisYear = daty.getFullYear();
-    for (var yr = 2013; yr <= thisYear; ++yr) {
+    for (var yr = 2015; yr <= thisYear; ++yr) {
         $('#year1, #year2, #year3').append(
             $("<option>").text(yr).val(yr)
         );
@@ -149,8 +149,8 @@ function setAWSAggrTsVariable() {
         );
     });
 
-    $('#stationDispAWS option[value=2_860299-Mkushi]').attr('selected', true);
-    AWS_INFO = getAWSInfos('2_860299-Mkushi');
+    $('#stationDispAWS option[value=3_SUTRON14-NAIROBI]').attr('selected', true);
+    AWS_INFO = getAWSInfos('3_SUTRON14-NAIROBI');
 
     setAWSVariableSelect1();
     setAWSParamSelect1("5_1");

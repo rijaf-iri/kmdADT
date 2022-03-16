@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    setAWSWindDataTime(5);
+    setAWSWindDataTime(90);
     setAWSWindDataCoords('10');
 
     $("#windHeight").on("change", () => {
@@ -10,10 +10,10 @@ $(document).ready(() => {
     ////////
     var today = new Date();
     var daty2 = dateFormat(today, "yyyy-mm-dd-hh");
-    today.setDate(today.getDate() - 5);
+    today.setDate(today.getDate() - 90);
     var daty1 = dateFormat(today, "yyyy-mm-dd-hh");
     var data0 = {
-        "net_aws": "2_860299-Mkushi",
+        "net_aws": "3_SUTRON14-NAIROBI",
         "height": "10",
         "tstep": "hourly",
         "start": daty1,

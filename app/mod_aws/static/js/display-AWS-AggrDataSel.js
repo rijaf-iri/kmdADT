@@ -61,11 +61,11 @@ $(document).ready(() => {
 
     var today = new Date();
     var daty2 = dateFormat(today, "yyyy-mm-dd");
-    today.setDate(today.getDate() - 30);
+    today.setDate(today.getDate() - 365);
     var daty1 = dateFormat(today, "yyyy-mm-dd");
 
     var data0 = {
-        "net_aws": ["2_860299-Mkushi"],
+        "net_aws": ["3_SUTRON14-NAIROBI"],
         "var_hgt": "5_1",
         "pars": "Tot",
         "tstep": "daily",
@@ -201,7 +201,7 @@ $(document).ready(() => {
 
 //////////
 
-var selAWSTS = ['2_860299-Mkushi'];
+var selAWSTS = ['3_SUTRON14-NAIROBI'];
 var selAWSSP = [];
 
 //////////

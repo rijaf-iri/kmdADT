@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %} ZMD ADT {% endblock %}
+{% block title %} KMD ADT {% endblock %}
 {% block head %}
 {{ super() }}
 <script type="text/javascript" src="{{ url_for('static', filename='lib/highcharts-8.1.2/highcharts.js') }}"></script>
@@ -47,7 +47,7 @@
                             <div>
                                 <label class="control-label">Select Height</label>
                                 <select name="height" id="windHeight" class="form-control">
-                                    <!-- <option value="2" selected>2 meter above ground</option> -->
+                                    <option value="2" selected>2 meter above ground</option>
                                     <option value="10">10 meter above ground</option>
                                 </select>
                             </div>

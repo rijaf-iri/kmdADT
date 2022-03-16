@@ -11,14 +11,14 @@ today.setDate(today.getDate() - 30);
 var daty1 = dateFormat(today, "yyyy-mm-dd");
 
 var data0 = {
-    "net_aws": "2_860299-Mkushi",
+    "net_aws": "3_SUTRON14-NAIROBI",
     "tstep": "daily",
     "start": daty1,
     "end": daty2
 };
 
 disp_Table_dataAggrAWS(data0)
-$('#pTable').html("Mkushi - 860299 - adcon");
+$('#pTable').html("NAIROBI - SUTRON14 - sutron");
 
 //
 $("#dispAWSTable").on("click", () => {

@@ -1,48 +1,53 @@
 function setAWSMinDataTime() {
     var label = ['Year', 'Mon', 'Day', 'Hour', 'Min'];
     var pname = ['year', 'month', 'day', 'hour', 'minute'];
+
+    var label3 = ['Year', 'Mon', 'Day', 'Hour'];
+    var pname3 = ['year', 'month', 'day', 'hour'];
     // 
     $(".ts-start-time").append(selectTimesTsMap(1, ".ts-start-time", label, pname, true));
     $(".ts-end-time").append(selectTimesTsMap(2, ".ts-end-time", label, pname, false));
-    $(".map-select-time").append(selectTimesTsMap(3, ".map-select-time", label, pname, true));
+    $(".map-select-time").append(selectTimesTsMap(3, ".map-select-time", label3, pname3, true));
     //
     $('#dekad1, #dekad2, #dekad3, #pentad1, #pentad2, #pentad3').hide();
+    $('#minute3').hide();
+
     $("#timestepDispTS").val("minute");
     $("#timestepDispTS").hide();
+
     //
     lastDaty = new Date();
-    lastDaty.setDate(lastDaty.getDate() - 5);
+    lastDaty.setDate(lastDaty.getDate() - 90);
 
+    // 
     var daty = new Date();
     //
 
-    var minuteStep = [0, 10, 15, 20, 30, 40, 45, 50];
-    for (var i = 0; i < minuteStep.length; ++i) {
-        var mn = minuteStep[i];
-        if (minuteStep[i] < 10) {
-            mn = "0" + minuteStep[i];
+    for (var i = 0; i < 60; i += 5) {
+        var mn = i;
+        if (i < 10) {
+            mn = "0" + i;
         }
         $('#minute1, #minute2').append(
             $("<option>").text(mn).val(mn)
         );
     }
     var vmin = daty.getMinutes();
-    // intersection 10 and 15 minutes
-    vmin = vmin - vmin % 30;
-
+    vmin = vmin - vmin % 5;
     $("#minute1").val("00");
     $("#minute2").val((vmin < 10 ? "0" : "") + vmin);
+
     //
-    for (var i = 0; i < 60; i += 30) {
-        var mn1 = i;
-        if (i < 10) {
-            mn1 = "0" + i;
-        }
-        $('#minute3').append(
-            $("<option>").text(mn1).val(mn1)
-        );
-    }
-    $("#minute3").val("00");
+    // for (var i = 0; i < 60; i += 30) {
+    //     var mn1 = i;
+    //     if (i < 10) {
+    //         mn1 = "0" + i;
+    //     }
+    //     $('#minute3').append(
+    //         $("<option>").text(mn1).val(mn1)
+    //     );
+    // }
+    // $("#minute3").val("00");
     //
     for (var i = 0; i < 24; ++i) {
         var hr = i;
@@ -87,7 +92,7 @@ function setAWSMinDataTime() {
     $("#month2, #month3").val((vmon < 10 ? "0" : "") + vmon);
     //
     var thisYear = daty.getFullYear();
-    for (var yr = 2013; yr <= thisYear; ++yr) {
+    for (var yr = 2015; yr <= thisYear; ++yr) {
         $('#year1, #year2, #year3').append(
             $("<option>").text(yr).val(yr)
         );

@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    setAWSWindDataTime(60);
+    setAWSWindDataTime(180);
     setAWSWindDataCoords('10');
 
     $("#windHeight").on("change", () => {
@@ -10,11 +10,11 @@ $(document).ready(() => {
     ////////
     var today = new Date();
     var daty2 = dateFormat(today, "yyyy-mm-dd-hh");
-    today.setDate(today.getDate() - 60);
+    today.setDate(today.getDate() - 180);
     var daty1 = dateFormat(today, "yyyy-mm-dd-hh");
 
     var data0 = {
-        "net_aws": "2_860299-Mkushi",
+        "net_aws": "3_SUTRON14-NAIROBI",
         "height": "10",
         "tstep": "hourly",
         "start": daty1,
@@ -233,7 +233,7 @@ function highcharts_WindRose_MinHourly(json) {
     var tableP = "Table of Frequencies (%) at " + json.height + "m : ";
     var stnRose = json.name + " - " + json.id + " - " + json.network + "; ";
     var stnPeriod = "Period: " + json.start + " - " + json.end + "; ";
-    var stnStep = (json.timestep == "hourly") ? "Hourly" : " 15 minutes";
+    var stnStep = (json.timestep == "hourly") ? "Hourly" : " 10 minutes";
     stnStep = stnStep + " wind data";
 
     $('#pwindrose').html(chartP + stnRose + stnPeriod + stnStep);

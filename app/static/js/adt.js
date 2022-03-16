@@ -960,6 +960,37 @@ function setDateTimeMapDataMin(n) {
     $("#year3").val(valYear);
 }
 
+function setDateTimeMapDataHour(n) {
+    var dObj = getDateMap1Hour();
+    dObj.setHours(dObj.getHours() + n);
+    // 
+    var vhour = dObj.getHours();
+    $("#hour3").val((vhour < 10 ? "0" : "") + vhour);
+    var vday = dObj.getDate();
+    $("#day3").val((vday < 10 ? "0" : "") + vday);
+    var vmon = dObj.getMonth() + 1;
+    $("#month3").val((vmon < 10 ? "0" : "") + vmon);
+
+    var years = $("#year3 option")
+        .map(function() { return $(this).val(); })
+        .get();
+    years = years.map(x => Number(x));
+    years = years.filter(x => x != 0);
+    var minyr = Math.min(...years);
+    var maxyr = Math.max(...years);
+
+    var thisYear = dObj.getFullYear();
+    var valYear;
+    if (thisYear < minyr) {
+        valYear = maxyr;
+    } else if (thisYear > maxyr) {
+        valYear = minyr;
+    } else {
+        valYear = thisYear;
+    }
+    $("#year3").val(valYear);
+}
+
 function setDateTimeMapData(n) {
     var timestep = $("#timestepDispTS option:selected").val();
     var dObj;

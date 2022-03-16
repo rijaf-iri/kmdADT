@@ -1,15 +1,15 @@
 $(document).ready(() => {
-    setAWSWindDataTime(60);
+    setAWSWindDataTime(180);
     setAWSWindDataCoords('10');
 
     ////////
     var today = new Date();
     var daty2 = dateFormat(today, "yyyy-mm-dd-hh");
-    today.setDate(today.getDate() - 60);
+    today.setDate(today.getDate() - 180);
     var daty1 = dateFormat(today, "yyyy-mm-dd-hh");
 
     var data0 = {
-        net_aws: "2_860299-Mkushi",
+        net_aws: "3_SUTRON14-NAIROBI",
         height: "10",
         tstep: "hourly",
         start: daty1,
