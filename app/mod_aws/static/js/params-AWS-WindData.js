@@ -10,6 +10,7 @@ function setAWSWindDataTime(backInday) {
     lastDaty = new Date();
     lastDaty.setDate(lastDaty.getDate() - backInday);
     var daty = new Date();
+    var firstYear = 2015;
     //
     for (var i = 0; i < 60; i += 5) {
         var mn = i;
@@ -21,25 +22,9 @@ function setAWSWindDataTime(backInday) {
         );
     }
     var vmin = daty.getMinutes();
-    vmin = vmin - vmin % 15;
+    vmin = vmin - vmin % 5;
     $("#minute1").val("00");
     $("#minute2").val((vmin < 10 ? "0" : "") + vmin);
-    // 
-    // var minuteStep = [0, 10, 15, 20, 30, 40, 45, 50];
-    // for (var i = 0; i < minuteStep.length; ++i) {
-    //     var mn = minuteStep[i];
-    //     if (minuteStep[i] < 10) {
-    //         mn = "0" + minuteStep[i];
-    //     }
-    //     $('#minute1, #minute2').append(
-    //         $("<option>").text(mn).val(mn)
-    //     );
-    // }
-    // var vmin = daty.getMinutes();
-    // // intersection 10 and 15 minutes
-    // vmin = vmin - vmin % 30;
-    // $("#minute1").val("00");
-    // $("#minute2").val((vmin < 10 ? "0" : "") + vmin);
 
     //
     for (var i = 0; i < 24; ++i) {
@@ -85,7 +70,7 @@ function setAWSWindDataTime(backInday) {
     $("#month2").val((vmon < 10 ? "0" : "") + vmon);
     //
     var thisYear = daty.getFullYear();
-    for (var yr = 2015; yr <= thisYear; ++yr) {
+    for (var yr = firstYear; yr <= thisYear; ++yr) {
         $('#year1, #year2').append(
             $("<option>").text(yr).val(yr)
         );

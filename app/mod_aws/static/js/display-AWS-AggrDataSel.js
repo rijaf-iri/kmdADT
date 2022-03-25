@@ -1,5 +1,6 @@
 $(document).ready(() => {
-    setAWSAggrDataTime();
+    var back_nb_Day = 365;
+    setAWSAggrDataTime(back_nb_Day);
 
     $.getJSON('/readCoords', (json) => {
         AWS_JSON = json;
@@ -61,7 +62,7 @@ $(document).ready(() => {
 
     var today = new Date();
     var daty2 = dateFormat(today, "yyyy-mm-dd");
-    today.setDate(today.getDate() - 365);
+    today.setDate(today.getDate() - back_nb_Day);
     var daty1 = dateFormat(today, "yyyy-mm-dd");
 
     var data0 = {

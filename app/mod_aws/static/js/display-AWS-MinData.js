@@ -1,5 +1,6 @@
 $(document).ready(() => {
-    setAWSMinDataTime();
+    var back_nb_Day = 90;
+    setAWSMinDataTime(back_nb_Day);
 
     //
     $.getJSON('/readCoords', (json) => {
@@ -17,12 +18,6 @@ $(document).ready(() => {
         AWS_INFO = getAWSInfos('3_SUTRON14-NAIROBI');
         setAWSVariableSelect('3_SUTRON14-NAIROBI');
 
-        // Integrate to R function from /readCoords
-        AWS_TimeRange = getAWSTimeRange('/getAWSTimeRange', {
-            'id': "SUTRON14-NAIROBI",
-            'net': '3'
-        });
-
         //
         setAWSParamSelect("5_1");
         displayMetadata();
@@ -34,11 +29,6 @@ $(document).ready(() => {
         //
         AWS_INFO = getAWSInfos(aws);
         setAWSVariableSelect(aws);
-        //
-        AWS_TimeRange = getAWSTimeRange('/getAWSTimeRange', {
-            'id': aws,
-            'net': AWS_INFO.network_code
-        });
         // 
         var var_height = $("#awsObsVar option:selected").val();
         setAWSParamSelect(var_height);
@@ -76,7 +66,7 @@ $(document).ready(() => {
 
     var today = new Date();
     var daty2 = dateFormat(today, "yyyy-mm-dd-hh-MM");
-    today.setDate(today.getDate() - 90);
+    today.setDate(today.getDate() - back_nb_Day);
     var daty1 = dateFormat(today, "yyyy-mm-dd-hh-MM");
 
     var data0 = {

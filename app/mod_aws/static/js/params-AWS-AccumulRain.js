@@ -1,4 +1,4 @@
-function setAWSAccumulRainTime() {
+function setAWSAccumulRainTime(backNbDay) {
     var label = ['Year', 'Mon', 'Day', 'Hour'];
     var pname = ['year', 'month', 'day', 'hour'];
     // 
@@ -13,8 +13,9 @@ function setAWSAccumulRainTime() {
 
     //
     lastDaty = new Date();
-    lastDaty.setDate(lastDaty.getDate() - 90);
+    lastDaty.setDate(lastDaty.getDate() - backNbDay);
     var daty = new Date();
+    var firstYear = 2015;
 
     //
     for (var i = 0; i < 24; ++i) {
@@ -61,7 +62,7 @@ function setAWSAccumulRainTime() {
     $("#month2, #month3").val((vmon < 10 ? "0" : "") + vmon);
     //
     var thisYear = daty.getFullYear();
-    for (var yr = 2015; yr <= thisYear; ++yr) {
+    for (var yr = firstYear; yr <= thisYear; ++yr) {
         $('#year1, #year2, #year3').append(
             $("<option>").text(yr).val(yr)
         );

@@ -1,5 +1,7 @@
 var mapCenterLON = 37.9179;
 var mapCenterLAT = 0.1703745;
+var mapMetService = "KMD";
+var metServiceURL = "https://meteo.go.ke/"
 
 /////////////////
 
@@ -7,9 +9,6 @@ var AWS_DATA = new Object();
 AWS_DATA.status = "no-data";
 var AWS_JSON = "";
 var AWS_INFO = "";
-
-// integrate to R function
-var AWS_TimeRange = "";
 
 // 
 var AWS_dataMinVarObj;
@@ -240,7 +239,7 @@ function createLeafletTileLayer(container, aws_tile = true) {
             latFormatter: funlatFrmt
         }).addTo(mymap);
         // 
-        var meteo = ' | <a href="http://www.ethiomet.gov.et/">KMD</a>';
+        var meteo = ' | <a href="' + metServiceURL + '">' + mapMetService + '</a>';
         if (aws_tile) {
             var attribu = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
             var mytile = L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -319,7 +318,7 @@ function changeLeafletTileLayer(container) {
         }
 
         var basemap = $(container + " option:selected").val();
-        var meteo = ' | <a href="http://www.ethiomet.gov.et/">KMD</a>';
+        var meteo = ' | <a href="' + metServiceURL + '">' + mapMetService + '</a>';
 
         switch (basemap) {
             case "openstreetmap":

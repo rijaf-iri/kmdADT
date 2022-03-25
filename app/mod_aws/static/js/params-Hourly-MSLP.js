@@ -9,6 +9,7 @@ function setAWSHourlyMSLPTime() {
 
     //
     var daty = new Date();
+    var firstYear = 2015;
 
     //
     for (var i = 0; i < 24; ++i) {
@@ -49,7 +50,7 @@ function setAWSHourlyMSLPTime() {
     $("#month3").val((vmon < 10 ? "0" : "") + vmon);
     //
     var thisYear = daty.getFullYear();
-    for (var yr = 2015; yr <= thisYear; ++yr) {
+    for (var yr = firstYear; yr <= thisYear; ++yr) {
         $('#year3').append(
             $("<option>").text(yr).val(yr)
         );

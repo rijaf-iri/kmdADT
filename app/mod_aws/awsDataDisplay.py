@@ -56,16 +56,6 @@ def readCoords():
     pyobj = json.loads(robj[0])
     return json.dumps(pyobj)
 
-
-@mod_aws.route("/getAWSTimeRange")
-def getAWSTimeRange():
-    aws_id = request.args.get("id")
-    aws_net = request.args.get("net")
-    robj = mtoadt.getAWSTimeRange(aws_id, aws_net, dirAWS)
-    pyobj = json.loads(robj[0])
-    return json.dumps(pyobj)
-
-
 ################
 
 
@@ -544,25 +534,25 @@ def displayQCHourly():
     return json.dumps(pyobj)
 
 
-# # @mod_aws.route("/dispLogFilesPage")
-# # @login_required
-# # def dispLogFiles_page():
-# #     return render_template("display-AWS-LogFiles.html")
+# @mod_aws.route("/dispLogFilesPage")
+# @login_required
+# def dispLogFiles_page():
+#     return render_template("display-AWS-LogFiles.html")
 
 
-# # @mod_aws.route("/displayLogFiles")
-# # @login_required
-# # def displayLogFiles():
-# #     date = request.args.get("date")
-# #     logtype = request.args.get("logtype")
-# #     awsnet = request.args.get("awsnet")
-# #     # robj = mtoadt.displayLogFiles(logtype, dirAWS, awsnet, date)
-# #     # pyobj = json.loads(robj[0])
-# #     pyobj = {"status": "no-data"}
-# #     return json.dumps(pyobj)
+# @mod_aws.route("/displayLogFiles")
+# @login_required
+# def displayLogFiles():
+#     date = request.args.get("date")
+#     logtype = request.args.get("logtype")
+#     awsnet = request.args.get("awsnet")
+#     # robj = mtoadt.displayLogFiles(logtype, dirAWS, awsnet, date)
+#     # pyobj = json.loads(robj[0])
+#     pyobj = {"status": "no-data"}
+#     return json.dumps(pyobj)
 
 
-# #################
+#################
 
 # # @mod_aws.route("/dispAWSStatusMap")
 # # def dispAWSStatus_map():

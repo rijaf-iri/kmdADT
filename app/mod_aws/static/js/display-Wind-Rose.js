@@ -1,5 +1,6 @@
 $(document).ready(() => {
-    setAWSWindDataTime(180);
+    var back_nb_Day = 180;
+    setAWSWindDataTime(back_nb_Day);
     setAWSWindDataCoords('10');
 
     $("#windHeight").on("change", () => {
@@ -10,7 +11,7 @@ $(document).ready(() => {
     ////////
     var today = new Date();
     var daty2 = dateFormat(today, "yyyy-mm-dd-hh");
-    today.setDate(today.getDate() - 180);
+    today.setDate(today.getDate() - back_nb_Day);
     var daty1 = dateFormat(today, "yyyy-mm-dd-hh");
 
     var data0 = {

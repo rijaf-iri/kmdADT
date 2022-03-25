@@ -1,4 +1,4 @@
-function setAWSMinDataTime() {
+function setAWSMinDataTime(backNbDay) {
     var label = ['Year', 'Mon', 'Day', 'Hour', 'Min'];
     var pname = ['year', 'month', 'day', 'hour', 'minute'];
 
@@ -15,14 +15,13 @@ function setAWSMinDataTime() {
     $("#timestepDispTS").val("minute");
     $("#timestepDispTS").hide();
 
-    //
-    lastDaty = new Date();
-    lastDaty.setDate(lastDaty.getDate() - 90);
-
     // 
     var daty = new Date();
-    //
+    var lastDaty = new Date();
+    lastDaty.setDate(lastDaty.getDate() - backNbDay);
+    var firstYear = 2015;
 
+    //
     for (var i = 0; i < 60; i += 5) {
         var mn = i;
         if (i < 10) {
@@ -37,17 +36,6 @@ function setAWSMinDataTime() {
     $("#minute1").val("00");
     $("#minute2").val((vmin < 10 ? "0" : "") + vmin);
 
-    //
-    // for (var i = 0; i < 60; i += 30) {
-    //     var mn1 = i;
-    //     if (i < 10) {
-    //         mn1 = "0" + i;
-    //     }
-    //     $('#minute3').append(
-    //         $("<option>").text(mn1).val(mn1)
-    //     );
-    // }
-    // $("#minute3").val("00");
     //
     for (var i = 0; i < 24; ++i) {
         var hr = i;
@@ -92,7 +80,7 @@ function setAWSMinDataTime() {
     $("#month2, #month3").val((vmon < 10 ? "0" : "") + vmon);
     //
     var thisYear = daty.getFullYear();
-    for (var yr = 2015; yr <= thisYear; ++yr) {
+    for (var yr = firstYear; yr <= thisYear; ++yr) {
         $('#year1, #year2, #year3').append(
             $("<option>").text(yr).val(yr)
         );

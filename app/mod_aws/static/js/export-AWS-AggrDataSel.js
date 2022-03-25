@@ -4,10 +4,10 @@ var downData = ['separator', 'downloadCSV', 'downloadXLS'];
 chartButtonMenuItems = chartButtonMenuItems.concat(downData);
 
 ////////////
-
+var back_nb_Day = 365;
 var today = new Date();
 var daty2 = dateFormat(today, "yyyy-mm-dd");
-today.setDate(today.getDate() - 30);
+today.setDate(today.getDate() - back_nb_Day);
 var daty1 = dateFormat(today, "yyyy-mm-dd");
 
 var data0 = {

@@ -1,4 +1,4 @@
-function setAWSAggrDataTime() {
+function setAWSAggrDataTime(backNbDay) {
     var label = ['Year', 'Mon', 'Dek', 'Pen', 'Day', 'Hour'];
     var pname = ['year', 'month', 'dekad', 'pentad', 'day', 'hour'];
     // 
@@ -10,6 +10,10 @@ function setAWSAggrDataTime() {
     $('#minute1, #minute2, #minute3').hide();
     //
     var daty = new Date();
+    var pastYear = new Date();
+    pastYear.setDate(pastYear.getDate() - backNbDay);
+    var initYear = dateFormat(pastYear, "yyyy");
+    var firstYear = 2015;
     //
     for (var i = 0; i < 24; ++i) {
         var hr = i;
@@ -52,12 +56,12 @@ function setAWSAggrDataTime() {
     $("#month2, #month3").val((vmon < 10 ? "0" : "") + vmon);
     //
     var thisYear = daty.getFullYear();
-    for (var yr = 2015; yr <= thisYear; ++yr) {
+    for (var yr = firstYear; yr <= thisYear; ++yr) {
         $('#year1, #year2, #year3').append(
             $("<option>").text(yr).val(yr)
         );
     }
-    $("#year1").val(2020);
+    $("#year1").val(initYear);
     $("#year2, #year3").val(thisYear);
     //
     //

@@ -108,16 +108,6 @@ function setAWSParamSelect1(var_height) {
     }
 }
 
-// TODO: replace to asynchronous
-function getAWSTimeRange(url, data) {
-    return $.ajax({
-        url: url,
-        data: data,
-        async: false,
-        dataType: 'json',
-    }).responseJSON;
-}
-
 //
 function getListMetadata() {
     var info = new Array();
@@ -129,8 +119,8 @@ function getListMetadata() {
     info[5] = "<b>Elevation :</b> " + AWS_INFO.altitude;
     info[6] = "<b>County :</b> " + AWS_INFO.County;
     info[7] = "<b>SubCounty :</b> " + AWS_INFO.SubCounty;
-    info[8] = "<b>Start Time :</b> " + AWS_TimeRange.startdate;
-    info[9] = "<b>End Time :</b> " + AWS_TimeRange.enddate;
+    info[8] = "<b>Start Time :</b> " + AWS_INFO.startdate;
+    info[9] = "<b>End Time :</b> " + AWS_INFO.enddate;
 
     var nl = info.length;
     var j = 0;
