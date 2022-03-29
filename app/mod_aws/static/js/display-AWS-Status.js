@@ -58,9 +58,9 @@ function leaflet_Map_AWSStatus(data) {
             return;
         }
 
-        var cont1 = '<b>id : </b>' + this.id + '<br>' + '<b>Station Name : </b>' + this.stationName;
-        var cont2 = '<br>' + '<b>AWS Group : </b>' + this.AWSGroup + '<br>' + '<b>Time step : </b>' + this.timestep;
-        var cont3 = '<br>' + '<b>Start : </b>' + this.start + '<br>' + '<b>End : </b>' + this.end;
+        var cont1 = '<b>id : </b>' + this.id + '<br>' + '<b>Station Name : </b>' + this.name;
+        var cont2 = '<br>' + '<b>AWS Network : </b>' + this.network + '<br>' + '<b>Time step : </b>' + this.timestep;
+        var cont3 = '<br>' + '<b>Start : </b>' + this.startdate + '<br>' + '<b>End : </b>' + this.enddate;
         var cont4 = '<br>' + '<b>Availability : </b>' + this.Availability + '<br>';
         var contenu = cont1 + cont2 + cont3 + cont4;
 
@@ -69,5 +69,4 @@ function leaflet_Map_AWSStatus(data) {
             .addTo(mymap);
         mymarkersBE.push(marker);
     });
-
 }

@@ -9,7 +9,6 @@ function setAWSHourlyMSLPTime() {
 
     //
     var daty = new Date();
-    var firstYear = 2015;
 
     //
     for (var i = 0; i < 24; ++i) {

@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, Response
 from flask import current_app as app
 from rpy2.robjects.packages import importr
 import rpy2.robjects.vectors as rvect
+import rpy2.robjects as robjects
 import json
 import tempfile
 import os
@@ -268,6 +269,12 @@ def downTableAggrDataSelCSV():
 
 
 ################
+
+@mod_aws.route("/getWindHeight")
+def getWindHeight():
+    robj = mtoadt.getWindHeight(dirAWS)
+    pyobj = json.loads(robj[0])
+    return json.dumps(pyobj)
 
 
 @mod_aws.route("/readCoordsWind")
@@ -554,9 +561,28 @@ def displayQCHourly():
 
 #################
 
-# # @mod_aws.route("/dispAWSStatusMap")
-# # def dispAWSStatus_map():
-# #     ltime = request.args.get("ltime")
-# #     robj = mtoadt.readAWSStatus(ltime, dirAWS)
-# #     pyobj = json.loads(robj[0])
-# #     return json.dumps(pyobj)
+@mod_aws.route("/dispAWSStatusPage")
+def dispAWSStatus_page():
+    return render_template("display-AWS-Status.html")
+
+@mod_aws.route("/dispAWSStatusMap")
+def dispAWSStatusMap():
+    ltime = request.args.get("ltime")
+    robj = mtoadt.readAWSStatus(ltime, dirAWS)
+    pyobj = json.loads(robj[0])
+    return json.dumps(pyobj)
+
+@mod_aws.route("/downAWSStatusTable")
+@login_required
+def downAWSStatusTable():
+    robj = mtoadt.downAWSStatusTable(dirAWS)
+    x = robjects.r.strsplit(robj[0], ",|\n")
+    x = x.rx2(1)
+    x = x[730]
+
+    filename = "AWS_Status_On_" + x + ".csv"
+    cd = "attachment; filename=" + filename
+    downcsv = Response(
+        robj[0], mimetype="text/csv", headers={"Content-disposition": cd}
+    )
+    return downcsv

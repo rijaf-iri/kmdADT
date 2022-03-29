@@ -15,8 +15,8 @@ $(document).ready(() => {
             );
         });
 
-        $('#stationDispAWS option[value=3_SUTRON14-NAIROBI]').attr('selected', true);
-        AWS_INFO = getAWSInfos('3_SUTRON14-NAIROBI');
+        $('#stationDispAWS option[value=' + initAWS + ']').attr('selected', true);
+        AWS_INFO = getAWSInfos(initAWS);
     });
 
     ////////////
@@ -26,7 +26,7 @@ $(document).ready(() => {
     var daty1 = dateFormat(today, "yyyy-mm-dd-hh");
 
     var data0 = {
-        "net_aws": "3_SUTRON14-NAIROBI",
+        "net_aws": initAWS,
         "accumul": "1",
         "tstep": "hourly",
         "start": daty1,

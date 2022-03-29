@@ -43,7 +43,7 @@ function setAWSVariableSelect(aws) {
             );
         }
     }
-    $('#awsObsVar option[value=5_1]').attr('selected', true);
+    $('#awsObsVar option[value=' + initVAR + ']').attr('selected', true);
 }
 
 //
@@ -83,7 +83,7 @@ function setAWSVariableSelect1() {
     });
 
     // $("#awsObsVar").val($("#awsObsVar option:first").val());
-    $('#awsObsVar option[value=5_1]').attr('selected', true);
+    $('#awsObsVar option[value=' + initVAR + ']').attr('selected', true);
 }
 //
 

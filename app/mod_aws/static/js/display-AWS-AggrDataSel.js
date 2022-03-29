@@ -66,9 +66,9 @@ $(document).ready(() => {
     var daty1 = dateFormat(today, "yyyy-mm-dd");
 
     var data0 = {
-        "net_aws": ["3_SUTRON14-NAIROBI"],
-        "var_hgt": "5_1",
-        "pars": "Tot",
+        "net_aws": [initAWS],
+        "var_hgt": initVAR,
+        "pars": initPAR,
         "tstep": "daily",
         "range": {
             "start": daty1,
@@ -202,7 +202,7 @@ $(document).ready(() => {
 
 //////////
 
-var selAWSTS = ['3_SUTRON14-NAIROBI'];
+var selAWSTS = [initAWS];
 var selAWSSP = [];
 
 //////////

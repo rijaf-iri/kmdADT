@@ -15,7 +15,6 @@ function setAWSAccumulRainTime(backNbDay) {
     lastDaty = new Date();
     lastDaty.setDate(lastDaty.getDate() - backNbDay);
     var daty = new Date();
-    var firstYear = 2015;
 
     //
     for (var i = 0; i < 24; ++i) {

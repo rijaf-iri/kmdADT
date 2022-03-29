@@ -13,7 +13,7 @@ function setAWSAggrDataTime(backNbDay) {
     var pastYear = new Date();
     pastYear.setDate(pastYear.getDate() - backNbDay);
     var initYear = dateFormat(pastYear, "yyyy");
-    var firstYear = 2015;
+
     //
     for (var i = 0; i < 24; ++i) {
         var hr = i;
@@ -126,7 +126,7 @@ function setAWSAggrSpVariable() {
             }
         }
     });
-    $("#awsSpVar").val("5_1_4");
+    $("#awsSpVar").val(initVAR + '_' + initSTAT);
 }
 
 function setAWSAggrTsVariableSel() {
@@ -139,7 +139,7 @@ function setAWSAggrTsVariableSel() {
     });
 
     // var firstSel = $("#awsObsVar option:first").val();
-    var firstSel = "5_1";
+    var firstSel = initVAR;
     $("#awsObsVar").val(firstSel);
     setAWSParamSelect1(firstSel);
 }
@@ -153,11 +153,11 @@ function setAWSAggrTsVariable() {
         );
     });
 
-    $('#stationDispAWS option[value=3_SUTRON14-NAIROBI]').attr('selected', true);
-    AWS_INFO = getAWSInfos('3_SUTRON14-NAIROBI');
+    $('#stationDispAWS option[value=' + initAWS + ']').attr('selected', true);
+    AWS_INFO = getAWSInfos(initAWS);
 
     setAWSVariableSelect1();
-    setAWSParamSelect1("5_1");
+    setAWSParamSelect1(initVAR);
 }
 
 //////////

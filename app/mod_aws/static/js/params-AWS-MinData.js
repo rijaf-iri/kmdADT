@@ -19,7 +19,6 @@ function setAWSMinDataTime(backNbDay) {
     var daty = new Date();
     var lastDaty = new Date();
     lastDaty.setDate(lastDaty.getDate() - backNbDay);
-    var firstYear = 2015;
 
     //
     for (var i = 0; i < 60; i += 5) {
@@ -102,7 +101,7 @@ function setAWSMinSpVariable() {
             $("<option>").text(txt).val(val)
         );
     });
-    $("#awsSpVar").val("5_1_4");
+    $("#awsSpVar").val(initVAR + '_' + initSTAT);
 }
 
 //////////

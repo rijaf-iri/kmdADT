@@ -1,7 +1,17 @@
 var mapCenterLON = 37.9179;
 var mapCenterLAT = 0.1703745;
+var mapZoom = 5.8;
 var mapMetService = "KMD";
-var metServiceURL = "https://meteo.go.ke/"
+var metServiceURL = "https://meteo.go.ke/";
+var initAWS = '3_SUTRON14-NAIROBI';
+var initHTMLAWS = "NAIROBI - SUTRON14 - Sutron";
+var initVAR = "5_1";
+var initSTAT = "4";
+var initPAR = "Tot";
+var initHTMLVAR = "Precipitation - Total";
+// speed_direction
+var initWindHGT = "10_10";
+var firstYear = 2015;
 
 /////////////////
 
@@ -212,6 +222,9 @@ function getVarNameColorKey(pars) {
     if (x == "8") { return 'RG'; }
     if (x == "10" | x == "11") { return 'FF'; }
     if (x == "14") { return 'ST'; }
+    if (x == "15") { return 'SUN'; }
+    if (x == "16") { return 'SPB'; }
+    if (x == "17") { return 'SECB'; }
 }
 
 /////////////////
@@ -222,7 +235,7 @@ function createLeafletTileLayer(container, aws_tile = true) {
         var mymap = L.map(container, {
             center: [mapCenterLAT, mapCenterLON],
             minZoom: 2,
-            zoom: 5.8,
+            zoom: mapZoom,
             zoomControl: false
         });
         // 

@@ -10,7 +10,7 @@ function setAWSWindDataTime(backInday) {
     lastDaty = new Date();
     lastDaty.setDate(lastDaty.getDate() - backInday);
     var daty = new Date();
-    var firstYear = 2015;
+
     //
     for (var i = 0; i < 60; i += 5) {
         var mn = i;
@@ -95,9 +95,9 @@ function setAWSWindDataCoords(height) {
     $('#stationDispAWS').empty();
     $.getJSON('/readCoordsWind', { 'height': height },
         (json) => {
-            // if(json.length == 0){
-            // return false;
-            // }
+            if (json.length == 0) {
+                return false;
+            }
             AWS_JSON = json;
             $('#stationDispAWS').attr('enabled', 'true');
             $.each(json, function() {
@@ -107,6 +107,26 @@ function setAWSWindDataCoords(height) {
                     $("<option>").text(text).val(val)
                 );
             });
-            // $('#stationDispAWS option[value=3_SUTRON14-NAIROBI]').attr('selected', true);
+
+            $('#stationDispAWS option[value=' + initAWS + ']').attr('selected', true);
         });
+}
+
+function setAWSWindHeigt(hgtWSWD) {
+    $('#windHeight').empty();
+    $.getJSON('/getWindHeight', (json) => {
+        if (json.length == 0) {
+            return false;
+        }
+        $('#windHeight').attr('enabled', 'true');
+        $.each(json, function() {
+            var pos = (this.wnd_idx == 0 ? "" : "(Anemometer:" + this.wnd_idx + ")");
+            var text = this.wnd_hgt + " meter above ground " + pos;
+            var val = this.ws_val + "_" + this.wd_val;
+            $('#windHeight').append(
+                $("<option>").text(text).val(val)
+            );
+        });
+        $('#windHeight option[value=' + hgtWSWD + ']').attr('selected', true);
+    });
 }

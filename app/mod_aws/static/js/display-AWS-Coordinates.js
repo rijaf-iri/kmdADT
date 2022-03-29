@@ -2,7 +2,7 @@ $(document).ready(() => {
     var mymap = L.map('mapAWSCoords', {
         center: [mapCenterLAT, mapCenterLON],
         minZoom: 2,
-        zoom: 6,
+        zoom: mapZoom,
         zoomControl: false
     });
 
@@ -22,7 +22,7 @@ $(document).ready(() => {
 
     //////
     var attribu = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
-    attribu = attribu + ' | <a href="https://www.ethiomet.gov.et">ZMD</a>';
+    attribu = attribu + ' | <a href="' + metServiceURL + '">' + mapMetService + '</a>';
     var mytile = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: attribu,
         maxZoom: 19,

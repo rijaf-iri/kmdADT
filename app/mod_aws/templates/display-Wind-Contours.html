@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %} KMD ADT {% endblock %}
+{% block title %} {{adtMetService}} {% endblock %}
 {% block head %}
 {{ super() }}
 <style>
@@ -25,16 +25,13 @@
                         </div>
                         <div class="input-container-content">
                             <div>
-                                <label class="control-label">Select Station</label>
-                                <select name="aws" id="stationDispAWS" class="form-control"> </select>
+                                <label class="control-label">Select Height</label>
+                                <select name="height" id="windHeight" class="form-control"></select>
                             </div>
                             <!--  -->
                             <div>
-                                <label class="control-label">Select Height</label>
-                                <select name="height" id="windHeight" class="form-control">
-                                    <option value="2" selected>2 meter above ground</option>
-                                    <option value="10">10 meter above ground</option>
-                                </select>
+                                <label class="control-label">Select Station</label>
+                                <select name="aws" id="stationDispAWS" class="form-control"> </select>
                             </div>
                             <!--  -->
                             <div>

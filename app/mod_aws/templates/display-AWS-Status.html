@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %} KMD ADT {% endblock %}
+{% block title %} {{adtMetService}} {% endblock %}
 {% block head %}
 {{ super() }}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/leaflet-1.6.0/leaflet.css') }}">
@@ -117,9 +117,13 @@
                                 </table>
                             </div>
                             <!--  -->
+                            {% if session.logged_in %}
                             <div class="download">
-                                <button type="button" id="downTableStatus" class="btn btn-primary btn-block"> Download Status Table </button>
+                                <a id="downTableStatus" href="" target="_blank" download>
+                                    <button type="button" class="btn btn-primary btn-block">Download Status Table</button>
+                                </a>
                             </div>
+                            {% endif %}
                             <!--  -->
                             <div class="download">
                                 <button type="button" id="downLeafletMap" class="btn btn-primary btn-block"> Download Map </button>
@@ -146,5 +150,8 @@
 </div>
 {% endblock %}
 {% block javascript %}
+{% if session.logged_in %}
+<script type="text/javascript" src="{{ url_for('aws.static', filename='js/export-AWS-Status.js') }}"></script>
+{% endif %}
 <script type="text/javascript" src="{{ url_for('aws.static', filename='js/display-AWS-Status.js') }}"></script>
 {% endblock %}

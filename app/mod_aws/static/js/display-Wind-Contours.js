@@ -1,7 +1,13 @@
 $(document).ready(() => {
     var back_nb_Day = 180;
+    setAWSWindHeigt(initWindHGT);
     setAWSWindDataTime(back_nb_Day);
-    setAWSWindDataCoords('10');
+    setAWSWindDataCoords(initWindHGT);
+
+    $("#windHeight").on("change", () => {
+        var height = $("#windHeight option:selected").val();
+        setAWSWindDataCoords(height);
+    });
 
     ////////
     var today = new Date();
@@ -10,8 +16,8 @@ $(document).ready(() => {
     var daty1 = dateFormat(today, "yyyy-mm-dd-hh");
 
     var data0 = {
-        net_aws: "3_SUTRON14-NAIROBI",
-        height: "10",
+        net_aws: initAWS,
+        height: initWindHGT,
         tstep: "hourly",
         start: daty1,
         end: daty2,
